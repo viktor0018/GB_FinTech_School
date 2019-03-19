@@ -16,3 +16,21 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::get("/","TestApi@index");
+
+
+Route::get('/user', "TestApi@index")->middleware('auth:api');
+
+
+Route::get('/chapter', "ChapterController@index");//->middleware('auth:api');
+
+
+Route::get('/topic', "TopicController@index");
+
+
+Route::get('/question', "QuestionController@index");
+
+
+Route::get('/answer', "AnswerController@index");
