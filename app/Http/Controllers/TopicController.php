@@ -11,7 +11,8 @@ class TopicController extends Controller
     //
     public function index()
     {
-        $topics = Topic::with('chapter');
+        $topics = Topic::with('chapters')->get();
+       // $topics = Topic::all();
         return  $topics;
     }
 

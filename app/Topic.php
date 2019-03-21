@@ -11,4 +11,9 @@ class Topic extends Model
     //
     protected $table = 'topics';
 
+    public function chapters()
+    {
+        return $this->belongsTo('App\Chapter');
+    }
+
 }

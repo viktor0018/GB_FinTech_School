@@ -8,4 +8,20 @@ class Question extends Model
 {
     //
     protected $table = 'questions';
+
+
+    public function topics()
+    {
+        return $this->belongsTo('App\Topic');
+    }
+
+    public function chapters()
+    {
+        return $this->belongsTo('App\Chapter');
+    }
+
+    public function answers()
+    {
+        return $this->hasMany('App\Answer');
+    }
 }

@@ -10,7 +10,7 @@ class QuestionController extends Controller
     //
     public function index()
     {
-        $questions = Question::all();
+        $questions = Question::with('chapters','topics','answers')->get();;
         return  $questions;
     }
 }
