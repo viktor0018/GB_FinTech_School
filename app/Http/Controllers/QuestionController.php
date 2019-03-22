@@ -12,6 +12,6 @@ class QuestionController extends Controller
     {
         $data = Question::with('chapters','topics','answers')->paginate(10);
         //return response()->json($data, 200);
-        return  json_encode($data[0]);
+        return  json_encode($data);
     }
 }
