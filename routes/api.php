@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get("/test","TestController@index");
 
-Route::get("/auth","TestController@auth");
+Route::get("/auth","TestController@auth")->middleware('auth:api');;
 
 
 Route::get('/user', "TestApi@index")->middleware('auth:api');
