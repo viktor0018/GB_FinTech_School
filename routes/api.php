@@ -23,10 +23,10 @@ Route::get("/test","TestController@index");
 Route::get("/auth","TestController@auth")->middleware('auth:api');;
 
 
-Route::get('/user', "TestApi@index")->middleware('auth:api');
+Route::post('register','Api\UsersController@create');
 
 
-Route::get('/chapter', "ChapterController@index");//->middleware('auth:api');
+Route::get('/chapter', "ChapterController@index");
 
 
 Route::get('/topic', "TopicController@index");
