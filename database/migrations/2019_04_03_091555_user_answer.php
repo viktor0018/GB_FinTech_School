@@ -17,7 +17,7 @@ class UserAnswer extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('question_id');
-            $table->boolean('is_correct');
+            $table->boolean('is_correct')->default(0);
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
 

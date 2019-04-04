@@ -27,7 +27,7 @@ class QuestionController extends Controller
         $questionAnswered = Question::whereHas('user_answers', function($q)
             {
             $q
-                ->where('is_correct', '=', '0')
+                ->where('is_correct', '<=', '3')
                 ->where('user_id' ,'=', Auth::id());
 
             })
@@ -64,12 +64,17 @@ class QuestionController extends Controller
 
         $answer = Answer::find($answer_id);
 
-        $user_answer = UserAnswers::updateOrCreate(
-            ['user_id' => Auth::id(), 'question_id' => $answer->question_id],
-            ['is_correct' => $answer->is_correct]
+        $user_answer = UserAnswers::firstOrNew(
+            ['user_id' => Auth::id(), 'question_id' => $answer->question_id]
         );
 
-        echo 'answer:'.$answer->is_correct;
+        if($answer->is_correct > 0){
+            $user_answer->is_correct = $user_answer->is_correct +1;
+            $user_answer->save();
+
+        }
+
+        echo 'answer:'.$user_answer->is_correct;
         return;
 
     }

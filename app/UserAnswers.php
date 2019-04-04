@@ -13,13 +13,6 @@ class UserAnswers extends Model
         'user_id', 'question_id', 'is_correct',
     ];
 
-    public function is_correct(){
-        return 'is_correct';
-    }
 
-    public function scopeCorrect($query)
-    {
-        return $query->where('is_correct', 1);
-    }
 
 }
