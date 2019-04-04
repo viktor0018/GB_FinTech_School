@@ -10,7 +10,7 @@ class ChapterController extends Controller
     //
     public function index()
     {
-        $data = Chapter::with('topics');
+        $data = Chapter::all();
         return response()->json($data, 200);
     }
 }

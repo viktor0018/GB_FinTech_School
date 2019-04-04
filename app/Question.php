@@ -24,4 +24,9 @@ class Question extends Model
     {
         return $this->hasMany('App\Answer');
     }
+
+    public function user_answers()
+    {
+        return $this->hasMany('App\UserAnswers');
+    }
 }
