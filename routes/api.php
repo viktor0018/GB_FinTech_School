@@ -19,16 +19,23 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get("/test","TestController@index");
 
-Route::get("/auth","TestController@auth")->middleware('auth:api');;
-
-Route::post('register','Api\UsersController@create');
-
-Route::get('/chapter', "ChapterController@index");
+Route::get("/auth","TestController@auth")->middleware('auth:api');
 
 Route::get('/question', "QuestionController@index");
 
-Route::get('/question_random', "QuestionController@question_random")->middleware('auth:api');
+Route::post('register','Api\UsersController@register');
 
-Route::post('/question_do_answer', "QuestionController@question_do_answer")->middleware('auth:api');
+Route::get('login','Api\UsersController@login');
 
-Route::get('/answer', "AnswerController@index");
+Route::get('path_to_login', ['as' => 'login', 'uses' => 'Api\UsersController@login']);
+
+Route::get('/chapter', "ChapterController@index")->middleware('auth:api');
+
+Route::get('/question/random/{id}', "QuestionController@questionRandom")->middleware('auth:api');
+
+Route::post('/question/answer', "QuestionController@questionAnswer")->middleware('auth:api');
+
+
+Route::get('/search', "QuestionController@search")->middleware('auth:api');
+
+

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use phpDocumentor\Reflection\Types\Integer;
 
 class QuestionController extends Controller
 {
@@ -20,9 +21,8 @@ class QuestionController extends Controller
         return  json_encode($data);
     }
 
-    public function question_random()
+    public function questionRandom($id)
     {
-        $id = intval(Input::get('id'));
 
         $questionAnswered = Question::whereHas('user_answers', function($q)
             {
@@ -57,10 +57,9 @@ class QuestionController extends Controller
         return response()->json($question, 200);
     }
 
-    public function question_do_answer()
+    public function questionAnswer(Request $request)
     {
-
-        $answer_id = intval(Input::get('answer_id'));
+        $answer_id = $request->get('answer_id');
 
         $answer = Answer::find($answer_id);
 
@@ -74,8 +73,15 @@ class QuestionController extends Controller
 
         }
 
-        echo 'answer:'.$user_answer->is_correct;
+        echo 'Right answers:'.$user_answer->is_correct;
         return;
+    }
 
+
+    public function search(Request $request){
+
+        $posts = Question::where('content', 'LIKE', '%' . $request->keyword . '%')->get();
+
+        return response()->json($posts);
     }
 }
